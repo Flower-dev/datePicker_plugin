@@ -12,12 +12,29 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _propTypes = require('prop-types');
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
 require('./datePicker.scss');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+DatePicker.PropsTypes = {
+    onChange: _propTypes2.default.func,
+    disabled: _propTypes2.default.bool,
+    required: _propTypes2.default.bool
+};
+
+DatePicker.DefaultProps = {
+    disabled: false,
+    required: false
+};
+
 function DatePicker(_ref) {
-    var onChange = _ref.onChange;
+    var onChange = _ref.onChange,
+        disabled = _ref.disabled,
+        required = _ref.required;
 
     var oneDay = 60 * 60 * 24 * 1000;
     var todayTimestamp = Date.now() - Date.now() % oneDay + new Date().getTimezoneOffset() * 1000 * 60;
@@ -252,6 +269,8 @@ function DatePicker(_ref) {
             _react2.default.createElement('input', {
                 type: 'date',
                 ref: inputRef,
+                required: required,
+                disabled: disabled,
                 onChange: updateDateFromInput
             })
         ),
