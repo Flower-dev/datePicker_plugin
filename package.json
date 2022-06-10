@@ -1,6 +1,6 @@
 {
   "name": "datepickerplugin",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"

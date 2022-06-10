@@ -14,6 +14,11 @@ DatePicker.defaultProps = {
     required: false
 }
 
+/**
+ * simple reusable reactJS DatePicker
+ * @module DatePicker
+ */
+
 export function DatePicker ({onChange, disabled, required}) {
     let oneDay = 60 * 60 * 24 * 1000;
     let todayTimestamp = Date.now() - (Date.now() % oneDay) + (new Date().getTimezoneOffset() * 1000 * 60);
@@ -60,6 +65,12 @@ export function DatePicker ({onChange, disabled, required}) {
         'December'
     ];
 
+    /**
+     * function to 
+     * @param {*} year 
+     * @param {*} month 
+     * @returns 
+     */
     const getNumberOfDays =  (year, month) => {
         return 40 - new Date(year, month, 40).getDate();
     };
@@ -110,13 +121,24 @@ export function DatePicker ({onChange, disabled, required}) {
         return monthArray;
     };
 
+    /**
+     * current date
+     * @param {*} day 
+     * @returns 
+     */
     const isCurrentDay = (day) => {
         return day.timestamp === todayTimestamp;
     };
 
+    /**
+     * selected date 
+     * @param {*} day 
+     * @returns 
+     */
     const isSelectedDay = (day) => {
         return day.timestamp === selectedDay
     }; 
+
 
     const getDateFromDateString = (dateValue) => {
         let dateData = dateValue.split('-').map(d=>parseInt(d, 10));
@@ -132,6 +154,12 @@ export function DatePicker ({onChange, disabled, required}) {
         return monthMap[Math.max(Math.min(11, month), 0)] || 'Month';
     };
 
+
+    /**
+     * function
+     * @param {*} timestamp 
+     * @returns dateObject.getFullYear() + '-' + (month < 10 ? '0'+month : month) + '-' + (date < 10 ? '0'+date : date);
+     */
     const getDateStringFromTimestamp = (timestamp) => {
         let dateObject = new Date(timestamp);
         let month = dateObject.getMonth()+1;
@@ -147,6 +175,9 @@ export function DatePicker ({onChange, disabled, required}) {
         }
     }
 
+    /**
+     * function to update the date
+     */
     const updateDateFromInput = () => {
         let dateValue = inputRef.current.value;
         let dateData = getDateFromDateString(dateValue);
@@ -164,6 +195,10 @@ export function DatePicker ({onChange, disabled, required}) {
     }
 
 
+    /**
+     * function to select date
+     * @param {*} day 
+     */
     const onDateClick = (day) => {
         setSelectedDay(day.timestamp); 
         setDateToInput(day.timestamp);
@@ -172,6 +207,11 @@ export function DatePicker ({onChange, disabled, required}) {
         }
     };
 
+    /**
+     * function managing the display of the years
+     * @param {*} offset 
+     */
+
     const setYear = (offset) => {
         let yearState = year + offset;
         let monthState =  month;
@@ -179,6 +219,10 @@ export function DatePicker ({onChange, disabled, required}) {
         setMonthDetails(getMonthDetails(yearState, monthState))
     };
 
+    /**
+     * function managing the display of the months & years
+     * @param {*} offset 
+     */
     const setMonth = (offset) => {
         let yearState = year;
         let monthState =  month + offset;
