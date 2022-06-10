@@ -29,9 +29,13 @@ DatePicker.PropsTypes = {
 DatePicker.defaultProps = {
     disabled: false,
     required: false
-};
 
-function DatePicker(_ref) {
+    /**
+     * simple reusable reactJS DatePicker
+     * @module DatePicker
+     */
+
+};function DatePicker(_ref) {
     var onChange = _ref.onChange,
         disabled = _ref.disabled,
         required = _ref.required;
@@ -79,6 +83,12 @@ function DatePicker(_ref) {
 
     var monthMap = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
+    /**
+     * function to 
+     * @param {*} year 
+     * @param {*} month 
+     * @returns 
+     */
     var getNumberOfDays = function getNumberOfDays(year, month) {
         return 40 - new Date(year, month, 40).getDate();
     };
@@ -129,10 +139,20 @@ function DatePicker(_ref) {
         return monthArray;
     };
 
+    /**
+     * current date
+     * @param {*} day 
+     * @returns 
+     */
     var isCurrentDay = function isCurrentDay(day) {
         return day.timestamp === todayTimestamp;
     };
 
+    /**
+     * selected date 
+     * @param {*} day 
+     * @returns 
+     */
     var isSelectedDay = function isSelectedDay(day) {
         return day.timestamp === selectedDay;
     };
@@ -152,6 +172,11 @@ function DatePicker(_ref) {
         return monthMap[Math.max(Math.min(11, month), 0)] || 'Month';
     };
 
+    /**
+     * function
+     * @param {*} timestamp 
+     * @returns dateObject.getFullYear() + '-' + (month < 10 ? '0'+month : month) + '-' + (date < 10 ? '0'+date : date);
+     */
     var getDateStringFromTimestamp = function getDateStringFromTimestamp(timestamp) {
         var dateObject = new Date(timestamp);
         var month = dateObject.getMonth() + 1;
@@ -167,6 +192,9 @@ function DatePicker(_ref) {
         }
     };
 
+    /**
+     * function to update the date
+     */
     var updateDateFromInput = function updateDateFromInput() {
         var dateValue = inputRef.current.value;
         var dateData = getDateFromDateString(dateValue);
@@ -183,6 +211,10 @@ function DatePicker(_ref) {
         inputRef.current.value = dateString;
     };
 
+    /**
+     * function to select date
+     * @param {*} day 
+     */
     var onDateClick = function onDateClick(day) {
         setSelectedDay(day.timestamp);
         setDateToInput(day.timestamp);
@@ -191,6 +223,11 @@ function DatePicker(_ref) {
         }
     };
 
+    /**
+     * function managing the display of the years
+     * @param {*} offset 
+     */
+
     var setYear = function setYear(offset) {
         var yearState = year + offset;
         var monthState = month;
@@ -198,6 +235,10 @@ function DatePicker(_ref) {
         setMonthDetails(getMonthDetails(yearState, monthState));
     };
 
+    /**
+     * function managing the display of the months & years
+     * @param {*} offset 
+     */
     var setMonth = function setMonth(offset) {
         var yearState = year;
         var monthState = month + offset;
