@@ -33,9 +33,9 @@
 }
 
 .dp-container {
-    float: inline-start;
+    float: initial;
     position: absolute;
-    left:0;
+    left:-100px;
     top: 40px;
     width: 300px;
     min-height: 350px;

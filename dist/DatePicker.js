@@ -26,7 +26,7 @@ DatePicker.PropsTypes = {
     required: _propTypes2.default.bool
 };
 
-DatePicker.DefaultProps = {
+DatePicker.defaultProps = {
     disabled: false,
     required: false
 };
