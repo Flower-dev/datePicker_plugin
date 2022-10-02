@@ -1,6 +1,6 @@
 # DATEPICKER
 
-A simple and reusable Datepicker component for React 
+A simple and reusable Datepicker component for React JS
 
 <img src="img/img1.png" alt="datepicker" width="350"/>
 
@@ -19,11 +19,13 @@ yarn add datepickerplugin
 
 
 ```js
-// react
+// import
 import { useState } from 'react';
 import {DatePicker}  from 'datepickerplugin';
 
-export default function Component() {
+// -------------
+
+function Component() {
     const [ date, setDate ] = useState('');
 
     return (
@@ -33,6 +35,8 @@ export default function Component() {
         </div>
     )
 }
+
+export default Component;
 ```
 
 ### Props
@@ -62,3 +66,5 @@ The last step starts documentation app as a simple webserver on http://localhost
 - Calendar
 - Date
 - React Component
+- React
+- Component
